@@ -62,3 +62,25 @@ def fk_chain(dh_params):
         T = T @ dh(a, alpha, d, theta)
 
     return T
+def fk_frames(dh_params):
+    frames = [np.eye(4)]
+
+    T = np.eye(4)
+
+    for a, alpha, d, theta in dh_params:
+        T = T @ dh(a, alpha, d, theta)
+        frames.append(T)
+
+    return frames
+def fk_frames(dh_params):
+    frames = []
+
+    T = np.eye(4)
+
+    frames.append(T)
+
+    for a, alpha, d, theta in dh_params:
+        T = T @ dh(a, alpha, d, theta)
+        frames.append(T)
+
+    return frames
