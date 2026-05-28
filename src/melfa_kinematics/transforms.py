@@ -8,7 +8,7 @@ def Rx(theta):
     return np.array([
         [1, 0, 0, 0],
         [0, c, -s, 0],
-        [0, s, c, 0],
+        [0, s,  c, 0],
         [0, 0, 0, 1]
     ])
 
@@ -18,10 +18,10 @@ def Ry(theta):
     s = np.sin(theta)
 
     return np.array([
-        [c, 0, s, 0],
-        [0, 1, 0, 0],
+        [ c, 0, s, 0],
+        [ 0, 1, 0, 0],
         [-s, 0, c, 0],
-        [0, 0, 0, 1]
+        [ 0, 0, 0, 1]
     ])
 
 
@@ -31,9 +31,9 @@ def Rz(theta):
 
     return np.array([
         [c, -s, 0, 0],
-        [s, c, 0, 0],
-        [0, 0, 1, 0],
-        [0, 0, 0, 1]
+        [s,  c, 0, 0],
+        [0,  0, 1, 0],
+        [0,  0, 0, 1]
     ])
 
 
@@ -44,3 +44,12 @@ def Trans(x, y, z):
         [0, 0, 1, z],
         [0, 0, 0, 1]
     ])
+
+
+def dh(a, alpha, d, theta):
+    return (
+        Rz(theta)
+        @ Trans(0, 0, d)
+        @ Trans(a, 0, 0)
+        @ Rx(alpha)
+    )
