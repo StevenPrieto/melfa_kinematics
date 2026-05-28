@@ -53,3 +53,12 @@ def dh(a, alpha, d, theta):
         @ Trans(a, 0, 0)
         @ Rx(alpha)
     )
+
+
+def fk_chain(dh_params):
+    T = np.eye(4)
+
+    for a, alpha, d, theta in dh_params:
+        T = T @ dh(a, alpha, d, theta)
+
+    return T
